@@ -6,5 +6,6 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src/ ./src
+COPY tests/ ./tests
 
-CMD ["python3", "-c", "from src.app import add; print(add(2,3))"]
+# לא מריץ שום דבר – רק בונה את הקוד
