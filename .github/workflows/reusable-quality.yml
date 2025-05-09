@@ -13,6 +13,9 @@ on:
 jobs:
   quality:
     runs-on: ubuntu-latest
+    env:  # נוסיף את PYTHONPATH כאן
+      PYTHONPATH: ${{ github.workspace }}/src
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -33,10 +36,7 @@ jobs:
 
       - name: Run pytest
         if: ${{ inputs.action == 'test' }}
-        run: |
-          export PYTHONPATH=$(pwd)/src  # הגדרת PYTHONPATH
-          pytest --maxfail=1 --disable-warnings -q  # להוסיף אפשורים נוספים במקרה של צורך (הגבלות למספר כשלונות)
-  
+        run: pytest --maxfail=1 --disable-warnings -q
 
   docker-build:
     needs: quality
