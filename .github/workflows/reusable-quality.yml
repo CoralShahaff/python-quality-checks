@@ -13,8 +13,8 @@ on:
 jobs:
   quality:
     runs-on: ubuntu-latest
-    env:  # נוסיף את PYTHONPATH כאן
-      PYTHONPATH: ${{ github.workspace }}/src
+    env:
+      PYTHONPATH: ${{ github.workspace }}  # כאן השינוי - נתיב בסיס ולא src
 
     steps:
       - name: Checkout code
