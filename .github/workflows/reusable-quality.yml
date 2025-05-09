@@ -34,9 +34,9 @@ jobs:
       - name: Run pytest
         if: ${{ inputs.action == 'test' }}
         run: |
-          export PYTHONPATH=src
-          pytest
-
+          export PYTHONPATH=$(pwd)/src  # הגדרת PYTHONPATH
+          pytest --maxfail=1 --disable-warnings -q  # להוסיף אפשורים נוספים במקרה של צורך (הגבלות למספר כשלונות)
+  
 
   docker-build:
     needs: quality
